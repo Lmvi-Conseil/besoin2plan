@@ -4,6 +4,23 @@ Le kit suit le versionnage sémantique. Chaque fichier porte un marqueur `KIT-VE
 chantier note la version qu'il a copiée dans `_kit/KIT-VERSION.txt` et reste figé sur elle.
 **Règle de cadence : une version du kit = un retour d'expérience de chantier réel.**
 
+## 1.2.0 — 2026-10-27 · les deux catalogues, pour démarrer
+
+La 1.1.0 demandait de router chaque brique vers un catalogue des services puis un catalogue des
+mécanismes, sans en donner un seul. Le kit livre désormais **`conception/catalogues/`** :
+
+- une **introduction** : ce qu'est chacun des deux catalogues, la question à laquelle il répond,
+  pourquoi on les consulte dans cet ordre, comment faire les siens ;
+- le **catalogue des services** d'une plateforme réelle, [TheSocle](https://thesocle.io) :
+  44 fiches rangées par besoin, dont deux rédigées (publier des événements, stockage de fichiers) ;
+- son **catalogue des mécanismes** : 148 fiches en 17 thèmes, dont deux rédigées (disjoncteur,
+  séparation des couches) ;
+- les **186 autres fiches en gabarits** : titre, besoin couvert et sections posés, à réécrire pour
+  votre plateforme ; un modèle de fiche par catalogue.
+
+Le contrat d'architecture (§10), la méthode (M6) et le plan technique (§3 bis) y renvoient. Le
+dossier est dans `conception/` : il part avec le kit et avec la skill.
+
 ## 1.1.0 — 2026-10-27 · le routage avant la brique, la preuve d'un écran
 
 Reprend les versions internes 1.10.0 et 1.11.0.

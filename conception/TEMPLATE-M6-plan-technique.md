@@ -1,4 +1,4 @@
-<!-- KIT-VERSION: 1.1.0 -->
+<!-- KIT-VERSION: 1.2.0 -->
 <!-- PROUVE-SUR: — (niveau Feature v1.8 non prouvé ; chaîne de base prouvée sur Régie kit v1.0) -->
 # M6 · Plan technique + matrice de couverture — {{nom du chantier}}
 
@@ -27,6 +27,8 @@ au contrat d'architecture (§10) :
 2. **sinon, un mécanisme du framework ?** → le catalogue des mécanismes : on cite la fiche et on
    **suit le mécanisme qu'elle prescrit** ;
 3. **sinon** → `NON COUVERT`, écrit ici avant de coder ; le catalogue s'enrichit en M7.
+
+Pas encore de catalogues ? Partir de [`catalogues/`](catalogues/README.md).
 
 | Brique | Ce qu'elle fait | Service consommé (guide) | Mécanisme suivi (fiche) | Non couvert |
 |--------|-----------------|--------------------------|-------------------------|-------------|

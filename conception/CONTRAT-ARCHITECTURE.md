@@ -1,4 +1,4 @@
-<!-- KIT-VERSION: 1.1.0 -->
+<!-- KIT-VERSION: 1.2.0 -->
 <!-- PROUVE-SUR: — (gabarit ; version remplie prouvée sur TheSocle, cf. exemples/profil-thesocle/) -->
 # Contrat d'architecture — {{nom de la plateforme}}
 
@@ -65,6 +65,8 @@
 3. aucun des deux → `NON COUVERT`, dit avant de coder, et le catalogue s'enrichit ensuite.
 
 Sans ces catalogues, la règle « ne jamais recoder » ne se vérifie pas : commencez-les, même courts.
+Point de départ : [`catalogues/`](catalogues/README.md), les deux catalogues d'une plateforme réelle,
+quatre fiches rédigées et les autres en gabarits, à adapter.
 Le contrôle avant go (3.3, 3.4) vérifie que chaque référence citée existe.
 
 ## 11. Qualité → **clause zéro-mock**

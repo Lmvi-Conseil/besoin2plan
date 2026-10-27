@@ -29,7 +29,7 @@ fiches, une grille de contrôle avant go, et une **skill Claude Code** qui la d�
 
 > Besoin → Plan est la méthode de conception de la démarche **AgileIA** de
 > [LMVI Conseil](https://www.lmvi-conseil.fr). Elle a été mise au point sur des chantiers réels de
-> la plateforme TheSocle entre juillet et octobre 2026. Version publiée : 1.1.0.
+> la plateforme TheSocle entre juillet et octobre 2026. Version publiée : 1.2.0.
 
 ---
 
@@ -216,9 +216,13 @@ vers deux catalogues que la plateforme déclare une fois dans son contrat d'arch
 
 L'ordre compte : interrogé à l'envers, l'agent écrit dans son code ce que la plateforme fournit.
 Le contrôle avant go lit la table de routage, refuse une brique sans référence et vérifie que
-chaque guide ou fiche cité **existe** : une référence inventée bloque le go comme un oubli. Sur
-TheSocle, les deux catalogues comptent 43 guides de services et 148 fiches de mécanismes
-([`exemples/profil-thesocle/`](exemples/profil-thesocle/)).
+chaque guide ou fiche cité **existe** : une référence inventée bloque le go comme un oubli.
+
+Pour démarrer, le kit livre **les deux catalogues d'une plateforme réelle**,
+[TheSocle](https://thesocle.io) : 44 services rendus par son hub, 148 mécanismes de son framework.
+Quatre fiches sont rédigées pour montrer le niveau attendu ; les 186 autres sont des gabarits,
+titre et besoin déjà posés, prêts à être réécrits pour votre plateforme
+([`conception/catalogues/`](conception/catalogues/README.md)).
 
 ---
 
@@ -285,7 +289,7 @@ déroule la chaîne. Elle s'arrête à chaque décision qui vous revient, tient 
 
 ### Sans la skill — le kit et le prompt pilote
 
-1. Téléchargez **`besoin2plan-kit-v1.1.0.zip`** depuis la
+1. Téléchargez **`besoin2plan-kit-v1.2.0.zip`** depuis la
    [release](https://github.com/Lmvi-Conseil/besoin2plan/releases/latest) et dézippez-le dans
    `docs/chantier/` de votre application : vous obtenez `docs/chantier/_kit/`.
 2. Remplissez une fois `_kit/CONTRAT-ARCHITECTURE.md` pour votre plateforme. L'exemple
@@ -303,11 +307,11 @@ Le pas à pas complet, avec un prompt prêt à coller pour chaque maillon, est d
 
 Chaque release publie deux archives et leurs sommes de contrôle.
 
-**`besoin2plan-kit-v1.1.0.zip`** — le kit, à déposer dans un chantier :
+**`besoin2plan-kit-v1.2.0.zip`** — le kit, à déposer dans un chantier :
 
 ```
 _kit/
-├── KIT-VERSION.txt                 v1.1.0
+├── KIT-VERSION.txt                 v1.2.0
 ├── ESSENTIEL.md                    la philosophie en une page
 ├── USAGE.md                        le pas à pas et les prompts par maillon
 ├── METHODE-Besoin2Plan.md          la référence : principes, maillons, boucles de retour, matrice
@@ -327,11 +331,12 @@ _kit/
 ├── gen-fiches-us.py                le générateur : fiches, matrice, squelettes de tests
 ├── us-data.example.yml             un jeu de données complet, issu d'un chantier réel
 ├── controle-avant-go.sh            les points mécaniques du contrôle avant go
+├── catalogues/                     services puis mécanismes : 4 fiches réelles, 186 gabarits
 ├── conformite/                     PV de recette, RGPD, risques, avenants, audit
 └── run/                            environnements, exploitation, CI et revue, doc et formation
 ```
 
-**`besoin2plan-skill-v1.1.0.zip`** — la skill Claude Code, kit embarqué :
+**`besoin2plan-skill-v1.2.0.zip`** — la skill Claude Code, kit embarqué :
 
 ```
 besoin2plan/

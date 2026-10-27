@@ -1,4 +1,4 @@
-<!-- KIT-VERSION: 1.1.0 -->
+<!-- KIT-VERSION: 1.2.0 -->
 # Contrat d'architecture plateforme TheSocle
 
 > **Le document transversal** : les **règles/décisions plateforme que TOUTE app TheSocle hérite** — le
@@ -75,7 +75,7 @@
 
 **Où chercher, dans cet ordre** :
 1. le besoin est-il un service rendu par le Hub ? → `APP-ZZ-TEMPLATE/docs/services-disponibles/`
-   (43 guides, index `00-index.md`) — on le **consomme** ;
+   (44 guides, index `00-index.md`) — on le **consomme** ;
 2. ce qui reste à écrire dans l'app → `APP-ZZ-TEMPLATE/docs/use-cases/` (148 fiches, index
    `INDEX.md`) — on **suit la fiche**, pas le code d'un voisin ;
 3. aucun des deux → `NON COUVERT`, dit avant de coder, et le catalogue s'enrichit ensuite.

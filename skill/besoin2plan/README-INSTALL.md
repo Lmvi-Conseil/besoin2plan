@@ -8,12 +8,12 @@ qui vous revient et ne produit aucun code avant votre go.
 
 Trois voies, au choix.
 
-**Depuis la release (le plus simple).** Téléchargez `besoin2plan-skill-v1.1.0.zip` depuis la
+**Depuis la release (le plus simple).** Téléchargez `besoin2plan-skill-v1.2.0.zip` depuis la
 [dernière release](https://github.com/Lmvi-Conseil/besoin2plan/releases/latest), puis :
 
 ```bash
 mkdir -p ~/.claude/skills
-unzip besoin2plan-skill-v1.1.0.zip -d ~/.claude/skills/
+unzip besoin2plan-skill-v1.2.0.zip -d ~/.claude/skills/
 ```
 
 **Depuis un clone du dépôt.**

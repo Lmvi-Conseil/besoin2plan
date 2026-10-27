@@ -1,4 +1,4 @@
-<!-- KIT-VERSION: 1.1.0 -->
+<!-- KIT-VERSION: 1.2.0 -->
 # Pilier CONCEPTION — la méthode M0→M7 · RG · Habilitations · Tests
 
 > **LE kit de conception** : la chaîne complète Besoin→Plan (M0→M7) + les artefacts que le client
@@ -74,6 +74,7 @@ dans sa SPEC). Sans ces sections, seules les fiches US/feature/épic sont produi
 |---|---|
 | `CONTRAT-ARCHITECTURE.md` | Le gabarit du contrat de **votre** plateforme : ce que toute app hérite sans le redécider. À remplir une fois par plateforme. |
 | `TEMPLATE-CONTROLE-AVANT-GO.md` | La grille : contrat, secrets, non-réécriture, traçabilité, qualité ; un verdict par ligne. Tout écart non levé bloque le go. |
+| [`catalogues/`](catalogues/README.md) | Les deux catalogues que M6 consulte, dans cet ordre : **services** de la plateforme (44) puis **mécanismes** du framework (148). Quatre fiches réelles, les autres en gabarits à remplir. |
 | `controle-avant-go.sh` | Les points mécaniques génériques (marqués 🤖) : secrets, fournisseur LLM en dur, matrice de couverture, maillons présents, relectures archivées. Lance `controle-plateforme.sh` s'il est posé à côté. Sortie 1 s'il reste un écart. |
 
 La référence de ce qui est imposé est `CONTRAT-ARCHITECTURE.md` : la grille l'interroge, elle ne

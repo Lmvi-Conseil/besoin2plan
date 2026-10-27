@@ -1,4 +1,4 @@
-<!-- KIT-VERSION: 1.1.0 -->
+<!-- KIT-VERSION: 1.2.0 -->
 # Méthode AgileIA — Besoin → Plan (Spec de besoins → US → Features → Épics → Phasage → Plan technique)
 
 > **But** : passer proprement d'un **besoin métier exprimé** à un **plan technique exécutable**, sans
@@ -174,9 +174,9 @@ commande — opencode par défaut, ou tout autre fournisseur) : une autre sessio
         coder, et le catalogue concerné s'enrichit une fois la solution trouvée (M7).
 
      L'ordre compte : interrogé à l'envers, l'agent réécrit un service que la plateforme rend déjà.
-     Une brique **sans référence** n'est pas prête : le contrôle avant go la bloque. Sur TheSocle,
-     les deux catalogues comptent 43 guides de services et 148 fiches de mécanismes
-     (`exemples/profil-thesocle/CONTRAT-ARCHITECTURE.md`, §10).
+     Une brique **sans référence** n'est pas prête : le contrôle avant go la bloque. Point de départ
+     dans ce kit : [`catalogues/`](catalogues/README.md), les catalogues d'une plateforme réelle
+     (44 services, 148 mécanismes), quatre fiches rédigées et les autres en gabarits.
   3. **Modèle de données** (tables, selon le standard du contrat d'architecture).
   4. **Matrice de couverture** `US → épic → phase → brique → tests` (le garde-fou, **source de
      vérité du mapping**, cf. §0 et §3 — colonne Tests : tags `@US-x`/`@RG-x`/`@neg`).
