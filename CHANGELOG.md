@@ -4,6 +4,30 @@ Le kit suit le versionnage sémantique. Chaque fichier porte un marqueur `KIT-VE
 chantier note la version qu'il a copiée dans `_kit/KIT-VERSION.txt` et reste figé sur elle.
 **Règle de cadence : une version du kit = un retour d'expérience de chantier réel.**
 
+## 1.1.0 — 2026-10-27 · le routage avant la brique, la preuve d'un écran
+
+Reprend les versions internes 1.10.0 et 1.11.0.
+
+- **La preuve d'un écran** (interne 1.10.0, retour d'expérience du 2026-10-26 : cinq défauts
+  d'écran en une soirée, invisibles à 202 tests de services verts). Une story d'écran a deux
+  preuves, son test de services et son scénario de bout en bout au navigateur, dans le rôle.
+  M7 donne la liste fixe de la gate d'écran : dans le rôle, dans une fenêtre réelle avec son
+  ascenseur, un bouton ou une raison par état, une sortie par étape, un texte qui dit l'état
+  réel. **Une capture pleine page n'est pas une preuve.** `TEMPLATE-TESTS.md` gagne l'axe Écran,
+  `TEMPLATE-M5-phasage.md` cite la liste dans la gate.
+- **Le routage avant la brique** (interne 1.11.0). M6 disait « réutiliser la plateforme » sans
+  dire où regarder. Chaque brique est désormais routée, dans cet ordre, vers le catalogue des
+  services puis le catalogue des mécanismes, sinon marquée `NON COUVERT` avant de coder.
+  - `METHODE-Besoin2Plan.md` : M6, M7, DoD, checklist ;
+  - `TEMPLATE-M6-plan-technique.md` : §3 bis, la table de routage ;
+  - `CONTRAT-ARCHITECTURE.md` : §10, les deux catalogues à déclarer ;
+  - `TEMPLATE-CONTROLE-AVANT-GO.md` : lignes 3.3 à 3.6 ;
+  - `controle-avant-go.sh` : 3.3 (chaque brique routée) et 3.4 (chaque référence existe dans
+    `CATALOGUE_SERVICES` ou `CATALOGUE_MECANISMES`).
+- **L'exemple TheSocle** suit : ses deux catalogues réels (43 guides, 148 fiches), sa grille
+  (lignes 5.6 à 5.9) et son script, qui corrige au passage un blocage quand l'app n'a aucun
+  fichier SQL.
+
 ## 1.0.0 — 2026-10-26 · première version publique
 
 Première publication, sous licence ouverte, de la méthode et de son kit.

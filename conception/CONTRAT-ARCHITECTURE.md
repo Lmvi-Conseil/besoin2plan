@@ -1,4 +1,4 @@
-<!-- KIT-VERSION: 1.0.0 -->
+<!-- KIT-VERSION: 1.1.0 -->
 <!-- PROUVE-SUR: — (gabarit ; version remplie prouvée sur TheSocle, cf. exemples/profil-thesocle/) -->
 # Contrat d'architecture — {{nom de la plateforme}}
 
@@ -56,6 +56,16 @@
 
 ## 10. Services fournis (à réutiliser, ne jamais recoder)
 `{{IAM · secrets · stockage · mail · antivirus · sauvegarde · passerelle d'API · LLM · DNS · TLS · …}}`
+
+**Les deux catalogues, consultés dans cet ordre** pour router chaque brique du plan technique (M6) :
+1. **catalogue des services** — *quel service de la plateforme je consomme au lieu de le recoder ?*
+   `{{chemin}}` · format de référence : `{{ex. howto-NN}}` ;
+2. **catalogue des mécanismes** — *par quel mécanisme du framework je l'écris dans mon code ?*
+   `{{chemin}}` · format de référence : `{{ex. UC-XXX-NN}}` ;
+3. aucun des deux → `NON COUVERT`, dit avant de coder, et le catalogue s'enrichit ensuite.
+
+Sans ces catalogues, la règle « ne jamais recoder » ne se vérifie pas : commencez-les, même courts.
+Le contrôle avant go (3.3, 3.4) vérifie que chaque référence citée existe.
 
 ## 11. Qualité → **clause zéro-mock**
 - **Zéro mock / simulation / régression.** Sans dépendance réelle → état **honnête**

@@ -29,7 +29,7 @@ fiches, une grille de contrôle avant go, et une **skill Claude Code** qui la d�
 
 > Besoin → Plan est la méthode de conception de la démarche **AgileIA** de
 > [LMVI Conseil](https://www.lmvi-conseil.fr). Elle a été mise au point sur des chantiers réels de
-> la plateforme TheSocle entre juillet et octobre 2026, et est publiée ici en version 1.0.0.
+> la plateforme TheSocle entre juillet et octobre 2026. Version publiée : 1.1.0.
 
 ---
 
@@ -40,6 +40,7 @@ fiches, une grille de contrôle avant go, et une **skill Claude Code** qui la d�
 - [La chaîne : huit maillons, six arrêts](#la-chaîne--huit-maillons-six-arrêts)
 - [Relu par un autre agent, piloté par Claude](#relu-par-un-autre-agent-piloté-par-claude)
 - [Des épics aux tests, puis à la documentation](#des-épics-aux-tests-puis-à-la-documentation)
+- [Ne rien recoder : chaque brique cite sa fiche](#ne-rien-recoder--chaque-brique-cite-sa-fiche)
 - [Pourquoi pas le « spec-driven development » ?](#pourquoi-pas-le--spec-driven-development--)
 - [Démarrer en cinq minutes](#démarrer-en-cinq-minutes)
 - [Ce que contiennent les zips](#ce-que-contiennent-les-zips)
@@ -197,6 +198,30 @@ code, tracée jusqu'aux tests, relue par un tiers : un assistant l'indexe telle 
 
 ---
 
+## Ne rien recoder : chaque brique cite sa fiche
+
+C'est au plan technique qu'un agent réécrit, sans le savoir, un service que la plateforme rend
+déjà : un envoi de courriel, un coffre à secrets, un disjoncteur. « Réutiliser la plateforme » ne
+suffit pas comme consigne : il faut dire **où regarder, et dans quel ordre**.
+
+Depuis la version 1.1.0, chaque brique du plan technique (M6) est **routée** avant d'être écrite,
+vers deux catalogues que la plateforme déclare une fois dans son contrat d'architecture :
+
+1. **le catalogue des services** : *le besoin est-il un service que la plateforme rend déjà ?* Si
+   oui, la brique le **consomme** et cite son guide ;
+2. **le catalogue des mécanismes** : *par quel mécanisme du framework j'écris ce qui reste ?* La
+   brique cite sa fiche et **suit ce qu'elle prescrit**, pas le code d'un voisin ;
+3. **sinon, `NON COUVERT`**, écrit avant de coder, et le catalogue s'enrichit une fois la solution
+   trouvée.
+
+L'ordre compte : interrogé à l'envers, l'agent écrit dans son code ce que la plateforme fournit.
+Le contrôle avant go lit la table de routage, refuse une brique sans référence et vérifie que
+chaque guide ou fiche cité **existe** : une référence inventée bloque le go comme un oubli. Sur
+TheSocle, les deux catalogues comptent 43 guides de services et 148 fiches de mécanismes
+([`exemples/profil-thesocle/`](exemples/profil-thesocle/)).
+
+---
+
 ## Pourquoi pas le « spec-driven development » ?
 
 Le *spec-driven development* (SDD) est l'approche que proposent les outils d'agents de code depuis
@@ -219,6 +244,8 @@ Ce que nous n'y avons pas trouvé, et dont nous avions besoin :
 | Hiérarchie **épics → features → stories** | une spec par fonctionnalité | une spec par fonctionnalité | ✅ obligatoire |
 | **Matrice de couverture** story → brique → phase → tests → démo | étiquettes de story sur les tâches | — | ✅ M6 |
 | Fin de phase par **démonstration réelle** | — | — | ✅ |
+| **Routage de chaque brique** vers le catalogue des services, puis des mécanismes, vérifié avant le go | — | — | ✅ M6 |
+| Un écran **prouvé au navigateur, dans le rôle**, à la taille de la fenêtre | — | — | ✅ M7 |
 | **Documentation pensée pour un assistant** (RAG) | — | — | ✅ |
 | Mode d'entrée « **cahier des charges fourni** », avec traçabilité | — | — | ✅ |
 | Seuil : **ne rien dérouler** sous une certaine taille | — | — | ✅ |
@@ -258,7 +285,7 @@ déroule la chaîne. Elle s'arrête à chaque décision qui vous revient, tient 
 
 ### Sans la skill — le kit et le prompt pilote
 
-1. Téléchargez **`besoin2plan-kit-v1.0.0.zip`** depuis la
+1. Téléchargez **`besoin2plan-kit-v1.1.0.zip`** depuis la
    [release](https://github.com/Lmvi-Conseil/besoin2plan/releases/latest) et dézippez-le dans
    `docs/chantier/` de votre application : vous obtenez `docs/chantier/_kit/`.
 2. Remplissez une fois `_kit/CONTRAT-ARCHITECTURE.md` pour votre plateforme. L'exemple
@@ -276,11 +303,11 @@ Le pas à pas complet, avec un prompt prêt à coller pour chaque maillon, est d
 
 Chaque release publie deux archives et leurs sommes de contrôle.
 
-**`besoin2plan-kit-v1.0.0.zip`** — le kit, à déposer dans un chantier :
+**`besoin2plan-kit-v1.1.0.zip`** — le kit, à déposer dans un chantier :
 
 ```
 _kit/
-├── KIT-VERSION.txt                 v1.0.0
+├── KIT-VERSION.txt                 v1.1.0
 ├── ESSENTIEL.md                    la philosophie en une page
 ├── USAGE.md                        le pas à pas et les prompts par maillon
 ├── METHODE-Besoin2Plan.md          la référence : principes, maillons, boucles de retour, matrice
@@ -304,7 +331,7 @@ _kit/
 └── run/                            environnements, exploitation, CI et revue, doc et formation
 ```
 
-**`besoin2plan-skill-v1.0.0.zip`** — la skill Claude Code, kit embarqué :
+**`besoin2plan-skill-v1.1.0.zip`** — la skill Claude Code, kit embarqué :
 
 ```
 besoin2plan/

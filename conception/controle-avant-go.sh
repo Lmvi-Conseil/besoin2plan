@@ -6,8 +6,8 @@
 # Rend un verdict par point : OK, ECART, S.O. ou A VERIFIER.
 # Sortie 0 si aucun écart, 1 sinon — utilisable en garde-fou.
 #
-# Cette version ne contrôle que ce qui vaut pour toute plateforme : secrets, traçabilité de la
-# chaîne. Les règles de VOTRE contrat d'architecture s'ajoutent dans un script frère,
+# Cette version ne contrôle que ce qui vaut pour toute plateforme : secrets, routage des briques
+# vers les catalogues, traçabilité de la chaîne. Les règles de VOTRE contrat d'architecture s'ajoutent dans un script frère,
 # `controle-plateforme.sh`, posé à côté de celui-ci : s'il existe, il est lancé à la suite et son
 # verdict compte. L'exemple TheSocle (exemples/profil-thesocle/) montre une version complète.
 #
@@ -54,6 +54,59 @@ if [ -n "$SRC" ]; then
   else ok "2.4" "aucun fournisseur LLM en dur"; fi
 else
   so "2.4" "pas encore de code — c'est le but d'un contrôle avant go"
+fi
+
+# ============================================== 3. Ce qui ne doit pas être réécrit
+titre "3. Ce qui ne doit pas être réécrit"
+
+# La table de routage de M6 (§3 bis du gabarit) : colonnes Brique · Ce qu'elle fait ·
+# Service consommé · Mécanisme suivi · Non couvert. Chaque brique remplit au moins une des
+# trois dernières. Si vos catalogues sont déclarés, chaque référence citée doit y exister :
+#   CATALOGUE_SERVICES=<dossier> CATALOGUE_MECANISMES=<dossier> ./controle-avant-go.sh <app>
+# Une référence existe quand un fichier du catalogue commence par elle (howto-37 → howto-37-*.md).
+M6_PLAN="$CHANTIER/M6-plan-technique/README.md"
+
+if [ ! -f "$M6_PLAN" ]; then
+  ecart "3.3" "pas de M6-plan-technique/README.md — aucune brique n'est routée"
+else
+  ROUTAGE=$(awk -F'|' '
+    function net(x) { gsub(/`/,"",x); gsub(/^[ \t]+|[ \t]+$/,"",x); if (x=="—" || x=="-") x=""; return x }
+    /^\|/ && !t && /[Bb]rique/ && /[Ss]ervice/ && /[Mm]écanisme/ { t=1; next }
+    t && /^\|/ && !/[A-Za-z0-9]/ { next }
+    t && /^\|/ { print net($2) "\037" net($4) "\037" net($5) "\037" net($6); next }
+    t && !/^\|/ { exit }' "$M6_PLAN")
+
+  if [ -z "$ROUTAGE" ]; then
+    ecart "3.3" "aucune table de routage dans M6 (colonnes Brique, Service, Mécanisme, Non couvert)"
+  else
+    NB=0; NC=0; SANS=""; INVENTES=""
+    verifier() {  # $1 = dossier du catalogue, $2 = cellule
+      [ -n "$1" ] && [ -n "$2" ] || return 0
+      for ref in $(echo "$2" | tr ',;' '  '); do
+        ls "$1/$ref"* >/dev/null 2>&1 || INVENTES="$INVENTES $ref"
+      done
+    }
+    while IFS=$'\037' read -r b svc mec nc; do
+      NB=$((NB+1))
+      if echo "$svc$mec$nc" | grep -q '{{'; then SANS="$SANS $b"; continue; fi
+      if [ -z "$svc$mec" ]; then
+        if echo "$nc" | grep -qi 'NON COUVERT'; then NC=$((NC+1)); else SANS="$SANS $b"; fi
+        continue
+      fi
+      verifier "${CATALOGUE_SERVICES:-}" "$svc"
+      verifier "${CATALOGUE_MECANISMES:-}" "$mec"
+    done <<< "$ROUTAGE"
+
+    [ -z "$SANS" ] && ok "3.3" "$NB brique(s) routée(s), dont $NC NON COUVERT" \
+                   || ecart "3.3" "brique(s) sans référence :$SANS"
+    if [ -z "${CATALOGUE_SERVICES:-}${CATALOGUE_MECANISMES:-}" ]; then
+      inconnu "3.4" "catalogues non déclarés (CATALOGUE_SERVICES, CATALOGUE_MECANISMES) — références non vérifiées"
+    elif [ -z "$INVENTES" ]; then
+      ok "3.4" "toutes les références citées existent dans les catalogues"
+    else
+      ecart "3.4" "référence(s) absente(s) des catalogues :$INVENTES"
+    fi
+  fi
 fi
 
 # =========================================================== 4. Traçabilité ====

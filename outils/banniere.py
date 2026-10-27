@@ -42,7 +42,7 @@ def svg() -> str:
             p.append(f'<text x="{x+104}" y="{y+9}" text-anchor="middle" {FONTE} font-weight="bold" font-size="17" fill="#1e1b2e">{ARRETS[e]}</text>')
         if i < len(ETAPES) - 1:
             p.append(f'<path d="M{x+114} {y+27} h20" stroke="#fff" stroke-width="3"/>')
-    p.append(f'<text x="1216" y="378" text-anchor="end" {FONTE} font-size="18" fill="#e9dcff">LMVI Conseil · v1.0.0</text>')
+    p.append(f'<text x="1216" y="378" text-anchor="end" {FONTE} font-size="18" fill="#e9dcff">LMVI Conseil · v1.1.0</text>')
     p.append('</svg>')
     return '\n'.join(p)
 

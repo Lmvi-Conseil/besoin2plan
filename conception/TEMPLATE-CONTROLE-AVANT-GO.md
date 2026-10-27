@@ -1,4 +1,4 @@
-<!-- KIT-VERSION: 1.0.0 -->
+<!-- KIT-VERSION: 1.1.0 -->
 <!-- PROUVE-SUR: — (version plateforme prouvée sur TheSocle, cf. exemples/profil-thesocle/) -->
 # Contrôle avant go — `<APP>`
 
@@ -60,6 +60,10 @@ l'exemple TheSocle montre le niveau de détail attendu : une règle vérifiable,
 |---|---|---|---|
 | 3.1 | Aucune brique de M6 ne refait un **service fourni** par la plateforme (contrat §10) | | |
 | 3.2 | Chaque brique nouvelle de M6 porte une logique **que seule cette app connaît** | | |
+| 3.3 | 🤖 Chaque brique de la table de routage de M6 cite un guide de service, une fiche de mécanisme, ou porte `NON COUVERT` | | |
+| 3.4 | 🤖 Chaque référence citée existe dans son catalogue (contrat §10) — une référence inventée compte comme un écart | | |
+| 3.5 | L'ordre a été suivi : pour chaque brique à fiche de mécanisme seule, aucun service de la plateforme ne rend déjà ce besoin | | |
+| 3.6 | Chaque `NON COUVERT` dit pourquoi, et quel catalogue sera enrichi en M7 | | |
 
 > C'est la ligne la plus rentable de cette grille. Un service réécrit ne se voit pas à la revue de
 > code : il se voit trois mois plus tard, quand les deux versions ont divergé.
